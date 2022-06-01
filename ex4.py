@@ -144,16 +144,6 @@ class DataPreprocessor(object):
         ])
 
         self.transformer.fit(dataset_df)
-    
-    def add_log1p(df):
-    
-    # For each of the numeric columns: 'Age', 'SibSp', 'Parch', 'Fare', 'Family'
-    # we introduce a new column that starts with the 'log1p_' string: 'log1p_Age', 'log1p_SibSp', 'log1p_Parch', 'log1p_Fare', 'log1p_Family'
-
-      for col in ['Transportation expense', 'Residence Distance', 'Service time', 'Weight', 'Height']:
-          df['log1p_' + col] = np.log1p(df[col])
-
-      return df
   
     def transform(self, df):
 
@@ -215,9 +205,6 @@ def split_data(df):
 
     Y = df['TimeOff']
     X = df.drop(['TimeOff'], axis = 1)
-
-
-
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3, random_state=1, stratify = Y)
 
     return X_train, X_test, y_train, y_test
